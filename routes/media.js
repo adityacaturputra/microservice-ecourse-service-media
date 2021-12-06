@@ -34,15 +34,16 @@ router.post('/', (req, res) => {
 
     const filename = filepath.split("\\").pop().split("/").pop();
 
-    const media = await Media.create({ image: `images/${filename}` })
+    const media = await Media.create({ image: `images/${filename}` });
 
     return res.status(200).json({
       status: 'success',
       data: {
         id: media.id,
         image: `${req.get('host')}/images/${filename}`
+        // image: `${req.headers.host}/images/${filename}`
       }
-    }) 
+    }); 
   })
 });
 
